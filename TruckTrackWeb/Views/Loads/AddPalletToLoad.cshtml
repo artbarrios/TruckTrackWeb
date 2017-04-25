@@ -1,0 +1,49 @@
+@model TruckTrackWeb.Models.LoadPalletViewModel
+
+@{
+    ViewBag.Title = "AddPalletToLoad";
+}
+
+<h2>Load: @Html.DisplayFor(model => model.Load_Name)</h2>
+<h4>Add Pallet To Load</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.HiddenFor(model => model.LoadId)
+        @Html.HiddenFor(model => model.Load_Name)
+
+        @if (((SelectList)ViewBag.PalletId).Count() > 0)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pallet_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PalletId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    @Html.Raw("<b>All available Pallets have been added to this Load.</b>")
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Load Detail", "Details", new { id = Model.LoadId } )
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

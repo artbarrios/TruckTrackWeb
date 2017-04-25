@@ -1,0 +1,75 @@
+@model TruckTrackWeb.Models.Load
+
+@{
+    ViewBag.Title = "Details Load";
+}
+
+<h2>Load: @Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Truck.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsTimeSensitive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsTimeSensitive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<div>
+    <hr />
+    <h4>
+        Pallets
+        &nbsp&nbsp&nbsp
+        <small>@Html.ActionLink("Add Pallet To Load", "AddPalletToLoad", "Loads", new { id = Model.Id }, null)</small>
+    </h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelPallet => Model.Pallets.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelPallet => Model.Pallets.FirstOrDefault().Value)
+            </th>
+        <th></th>
+        </tr>
+@foreach (var pallet in Model.Pallets)    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelPallet => pallet.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelPallet => pallet.Value)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Pallets", new { id = pallet.Id }, null)
+            </td>
+        </tr>
+}
+    </table>    
+</div>
+

@@ -1,0 +1,92 @@
+@model IEnumerable<TruckTrackWeb.Models.StopEvent>
+
+@{
+    ViewBag.Title = "Index StopEvent";
+}
+
+<h2>Stop Events</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = 0, modelType = "" }, null) | 
+    <a id="printerFriendlyLink" href="#">Printer Friendly View</a>
+    <img id="printerFriendlyLoader" src="~/Content/images/linear-loader.gif" style="display: none;"/>
+</p>
+    <div id="printerFriendlyError" class="alert alert-danger" style="display: none;">
+        <strong>Error:</strong>  Could not generate Printer Friendly View. Please try again.
+    </div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAllDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageFilename)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAllDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageFilename)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script src="~/Scripts/ViewScripts/index-view.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#printerFriendlyError").hide();
+        storePrinterFriendlyData("@ViewBag.PrinterFriendlyUrl", "@ViewBag.AppEngineTimeout");
+        $("#printerFriendlyLink").click(function () {
+            viewReport(
+                getPrinterFriendlyUrl(),
+                getAppEngineTimeout(),
+                $("#printerFriendlyError"),
+                $("#printerFriendlyLink"),
+                $("#printerFriendlyLoader")
+            );
+        });
+    });
+</script>

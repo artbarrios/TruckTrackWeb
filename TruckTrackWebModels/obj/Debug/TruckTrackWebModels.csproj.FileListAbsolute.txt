@@ -1,0 +1,7 @@
+C:\Users\barriosa\Documents\Projects\TruckTrackWeb\TruckTrackWebModels\bin\Debug\TruckTrackWebModels.dll
+C:\Users\barriosa\Documents\Projects\TruckTrackWeb\TruckTrackWebModels\bin\Debug\TruckTrackWebModels.pdb
+C:\Users\barriosa\Documents\Projects\TruckTrackWeb\TruckTrackWebModels\obj\Debug\TruckTrackWebModels.csprojResolveAssemblyReference.cache
+C:\Users\barriosa\Documents\Projects\TruckTrackWeb\TruckTrackWebModels\obj\Debug\TruckTrackWebModels.dll
+C:\Users\barriosa\Documents\Projects\TruckTrackWeb\TruckTrackWebModels\obj\Debug\TruckTrackWebModels.pdb
+C:\Users\barriosa\Documents\Projects\TruckTrackWeb\TruckTrackWebModels\bin\Debug\Newtonsoft.Json.dll
+C:\Users\barriosa\Documents\Projects\TruckTrackWeb\TruckTrackWebModels\bin\Debug\Newtonsoft.Json.xml

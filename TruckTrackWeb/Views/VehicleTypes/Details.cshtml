@@ -1,0 +1,65 @@
+@model TruckTrackWeb.Models.VehicleType
+
+@{
+    ViewBag.Title = "Details VehicleType";
+}
+
+<h2>Vehicle Type: @Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<div>
+    <hr />
+    <h4>
+        Trucks
+        &nbsp&nbsp&nbsp
+        <small>@Html.ActionLink("Add Truck To Vehicle Type", "AddTruckToVehicleType", "VehicleTypes", new { id = Model.Id }, null)</small>
+    </h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelTruck => Model.Trucks.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelTruck => Model.Trucks.FirstOrDefault().TagNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelTruck => Model.Trucks.FirstOrDefault().DatePurchased)
+            </th>
+        <th></th>
+        </tr>
+@foreach (var truck in Model.Trucks)    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelTruck => truck.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTruck => truck.TagNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTruck => truck.DatePurchased)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Trucks", new { id = truck.Id }, null)
+            </td>
+        </tr>
+}
+    </table>    
+</div>
+

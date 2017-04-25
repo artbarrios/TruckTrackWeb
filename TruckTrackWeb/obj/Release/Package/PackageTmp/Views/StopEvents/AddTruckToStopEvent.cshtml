@@ -1,0 +1,49 @@
+@model TruckTrackWeb.Models.StopEventTruckViewModel
+
+@{
+    ViewBag.Title = "AddTruckToStopEvent";
+}
+
+<h2>Stop Event: @Html.DisplayFor(model => model.StopEvent_Title)</h2>
+<h4>Add Truck To Stop Event</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.HiddenFor(model => model.StopEventId)
+        @Html.HiddenFor(model => model.StopEvent_Title)
+
+        @if (((SelectList)ViewBag.TruckId).Count() > 0)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Truck_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("TruckId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    @Html.Raw("<b>All available Trucks have been added to this Stop Event.</b>")
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to StopEvent Detail", "Details", new { id = Model.StopEventId } )
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="TruckTrackWebContext-Web.config Connection String" description="TruckTrackWebContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=|DataDirectory|\TruckTrackWeb.sdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\barriosa\\Documents\\Projects\\TruckTrackWeb\\TruckTrackWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TruckTrackWebContext']/@connectionString" />
+  </parameter>
+</parameters>

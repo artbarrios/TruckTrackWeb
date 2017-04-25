@@ -1,0 +1,30 @@
+@{
+    ViewBag.Title = "Calendar";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/fullcalendar.js"></script>
+
+<div><hr /></div>
+<div id='calendar'></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            theme: true,
+            eventClick: function (calEvent, jsEvent, view) {
+            },
+            // when you click on a day (not an event) go to that day view
+            dayClick: function (date, jsEvent, view) {
+                $('#calendar').fullCalendar( 'gotoDate', date );
+                $('#calendar').fullCalendar( 'changeView', "agendaDay" );
+            },
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            events: '/api/FullCalendarEvents'
+        });
+    });
+</script>

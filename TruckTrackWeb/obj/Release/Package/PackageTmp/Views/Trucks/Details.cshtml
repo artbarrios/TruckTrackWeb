@@ -1,0 +1,159 @@
+@model TruckTrackWeb.Models.Truck
+
+@{
+    ViewBag.Title = "Details Truck";
+}
+
+<h2>Truck: @Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TagNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TagNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatePurchased)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatePurchased)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleType.Name)
+        </dd>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.StopEventFlowchartDiagramData)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StopEventFlowchartDiagramData)
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<div>
+    <hr />
+    <h4>
+        Stop Events
+        &nbsp&nbsp&nbsp
+        <small>@Html.ActionLink("Add Stop Event To Truck", "AddStopEventToTruck", "Trucks", new { id = Model.Id }, null)</small>
+    </h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelStopEvent => Model.StopEvents.FirstOrDefault().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelStopEvent => Model.StopEvents.FirstOrDefault().StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelStopEvent => Model.StopEvents.FirstOrDefault().StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelStopEvent => Model.StopEvents.FirstOrDefault().EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelStopEvent => Model.StopEvents.FirstOrDefault().EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelStopEvent => Model.StopEvents.FirstOrDefault().IsAllDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelStopEvent => Model.StopEvents.FirstOrDefault().ImageFilename)
+            </th>
+        <th></th>
+        </tr>
+@foreach (var stopEvent in Model.StopEvents)    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelStopEvent => stopEvent.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelStopEvent => stopEvent.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelStopEvent => stopEvent.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelStopEvent => stopEvent.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelStopEvent => stopEvent.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelStopEvent => stopEvent.IsAllDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelStopEvent => stopEvent.ImageFilename)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "StopEvents", new { id = stopEvent.Id }, null)
+ |
+                @Html.ActionLink("Remove from List", "RemoveStopEventFromTruck", "Trucks", new { truckId = Model.Id, stopEventId = stopEvent.Id }, null )
+            </td>
+        </tr>
+}
+    </table>    
+</div>
+
+<div>
+    <hr />
+    <h4>
+        Loads
+        &nbsp&nbsp&nbsp
+        <small>@Html.ActionLink("Add Load To Truck", "AddLoadToTruck", "Trucks", new { id = Model.Id }, null)</small>
+    </h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelLoad => Model.Loads.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelLoad => Model.Loads.FirstOrDefault().IsTimeSensitive)
+            </th>
+        <th></th>
+        </tr>
+@foreach (var load in Model.Loads)    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelLoad => load.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelLoad => load.IsTimeSensitive)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Loads", new { id = load.Id }, null)
+            </td>
+        </tr>
+}
+    </table>    
+</div>
+
